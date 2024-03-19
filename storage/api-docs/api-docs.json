@@ -1,0 +1,1071 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Mi primera documentacion con swagger",
+        "description": "Si",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000"
+        }
+    ],
+    "paths": {
+        "/api/categorias": {
+            "get": {
+                "tags": [
+                    "Categorias"
+                ],
+                "summary": "Lista todas los categorias.",
+                "operationId": "697131dd052703b53059fbe02b9decbd",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "rows": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id_categoria": {
+                                                        "type": "number",
+                                                        "example": "1"
+                                                    },
+                                                    "nombre": {
+                                                        "type": "string",
+                                                        "example": "electronicos"
+                                                    },
+                                                    "descripcion": {
+                                                        "type": "string",
+                                                        "example": "Todo tipo de electronicos"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Categorias"
+                ],
+                "summary": "Crea una nueva categoria",
+                "description": "Crea una nueva categoria con los datos proporcionados en el cuerpo de la solicitud.",
+                "operationId": "9559d9d92bcad5dc09d658e921badd50",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "Nombre",
+                                    "Descripcion"
+                                ],
+                                "properties": {
+                                    "Nombre": {
+                                        "type": "string",
+                                        "example": "Ropa"
+                                    },
+                                    "Descripcion": {
+                                        "type": "string",
+                                        "example": "Ropa y accesorios"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Pedido creado exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Pedido creado correctamente"
+                                        },
+                                        "pedido": {
+                                            "$ref": "#/components/schemas/Pedidos"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error en la solicitud"
+                    }
+                }
+            }
+        },
+        "/api/categorias/{id}": {
+            "get": {
+                "tags": [
+                    "Categorias"
+                ],
+                "summary": "Obtiene una categoria por su ID",
+                "description": "Devuelve una categoria específico según el ID proporcionado.",
+                "operationId": "a090c50b0f725bf25d75c01aa136cb6b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la categoria",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "Categoria": {
+                                            "$ref": "#/components/schemas/Categoria"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Pedido no encontrado"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Categorias"
+                ],
+                "summary": "Actualiza una nueva categoria",
+                "description": "Actualiza una nueva categoria con los datos proporcionados en el cuerpo de la solicitud.",
+                "operationId": "9aa5ce8b93543a83fd190257a3aba297",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la categoria",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "Nombre",
+                                    "Descripcion"
+                                ],
+                                "properties": {
+                                    "Nombre": {
+                                        "type": "string",
+                                        "example": "Ropa"
+                                    },
+                                    "Descripcion": {
+                                        "type": "string",
+                                        "example": "Ropa y accesorios"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Pedido creado exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Pedido creado correctamente"
+                                        },
+                                        "pedido": {
+                                            "$ref": "#/components/schemas/Pedidos"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error en la solicitud"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Categorias"
+                ],
+                "summary": "Borra una  categoria",
+                "description": "Borra una  categoria con los datos proporcionados en el cuerpo de la solicitud.",
+                "operationId": "eeac9b2988ff4c638cfd3e83f602a468",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la categoria",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Pedido creado exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Pedido creado correctamente"
+                                        },
+                                        "pedido": {
+                                            "$ref": "#/components/schemas/Pedidos"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error en la solicitud"
+                    }
+                }
+            }
+        },
+        "/api/pedidos": {
+            "get": {
+                "tags": [
+                    "Pedidos"
+                ],
+                "summary": "Lista todos los pedidos.",
+                "operationId": "18016b869e967852749747b26b6947ed",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "rows": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id_pedido": {
+                                                        "type": "number",
+                                                        "example": "1"
+                                                    },
+                                                    "fecha_creacion": {
+                                                        "type": "string",
+                                                        "example": "2023-02-23T00:09:16.000000Z"
+                                                    },
+                                                    "id_proveedor": {
+                                                        "type": "number",
+                                                        "example": "1"
+                                                    },
+                                                    "id_forma_pago": {
+                                                        "type": "number",
+                                                        "example": "1"
+                                                    },
+                                                    "id_cliente": {
+                                                        "type": "number",
+                                                        "example": "1"
+                                                    },
+                                                    "id_estado_pedido": {
+                                                        "type": "number",
+                                                        "example": "1"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Pedidos"
+                ],
+                "summary": "Crea un nuevo pedido",
+                "description": "Crea un nuevo pedido con los datos proporcionados en el cuerpo de la solicitud.",
+                "operationId": "4e51d4584d4bd4f27c044e95086c820e",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "Fecha_creacion",
+                                    "id_proveedor",
+                                    "id_forma_pago",
+                                    "id_cliente",
+                                    "id_estado_pedido"
+                                ],
+                                "properties": {
+                                    "Fecha_creacion": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2023-03-18"
+                                    },
+                                    "id_proveedor": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "id_forma_pago": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "id_cliente": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "id_estado_pedido": {
+                                        "type": "integer",
+                                        "example": 1
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Pedido creado exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Pedido creado correctamente"
+                                        },
+                                        "pedido": {
+                                            "$ref": "#/components/schemas/Pedidos"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error en la solicitud"
+                    }
+                }
+            }
+        },
+        "/api/pedidos/{id}": {
+            "get": {
+                "tags": [
+                    "Pedidos"
+                ],
+                "summary": "Obtiene un pedido por su ID",
+                "description": "Devuelve un pedido específico según el ID proporcionado.",
+                "operationId": "664f26870b0021e2fe79a51482a3976d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del pedido",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "Pedidos": {
+                                            "$ref": "#/components/schemas/Pedidos"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Pedido no encontrado"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Pedidos"
+                ],
+                "summary": "Actualiza un pedido.",
+                "description": "Actualiza un pedido.",
+                "operationId": "fab16f4160ac80507c7ddec0700cf878",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del pedido",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "Fecha_creacion",
+                                    "id_proveedor",
+                                    "id_forma_pago",
+                                    "id_cliente",
+                                    "id_estado_pedido"
+                                ],
+                                "properties": {
+                                    "Fecha_creacion": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2023-03-18"
+                                    },
+                                    "id_proveedor": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "id_forma_pago": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "id_cliente": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "id_estado_pedido": {
+                                        "type": "integer",
+                                        "example": 1
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Pedido creado exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Pedido creado correctamente"
+                                        },
+                                        "pedido": {
+                                            "$ref": "#/components/schemas/Pedidos"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error en la solicitud"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Pedidos"
+                ],
+                "summary": "Borra un pedido.",
+                "description": "Borra un pedido.",
+                "operationId": "2693c9e64eb791a7eaacf1cb48ae6cf8",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del pedido",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Pedido eliminado exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Pedido eliminado correctamente"
+                                        },
+                                        "pedido": {
+                                            "$ref": "#/components/schemas/Pedidos"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error en la solicitud"
+                    }
+                }
+            }
+        },
+        "/api/productos": {
+            "get": {
+                "tags": [
+                    "Productos"
+                ],
+                "summary": "Lista todos los productos.",
+                "operationId": "453a21494655e2769474af4d0266186f",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "rows": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Producto"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Productos"
+                ],
+                "summary": "Crea un nuevo producto.",
+                "operationId": "b93f6eb93990a81eb3c9d67e43d87083",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "Nombre",
+                                    "Precio",
+                                    "Descripcion",
+                                    "id_categoria",
+                                    "id_marca"
+                                ],
+                                "properties": {
+                                    "Nombre": {
+                                        "type": "string",
+                                        "example": "Televisor"
+                                    },
+                                    "Precio": {
+                                        "type": "integer",
+                                        "example": 15000
+                                    },
+                                    "Descripcion": {
+                                        "type": "string",
+                                        "example": "Televisor de 50 pulgadas LG"
+                                    },
+                                    "id_categoria": {
+                                        "type": "integer",
+                                        "example": 5
+                                    },
+                                    "id_marca": {
+                                        "type": "integer",
+                                        "example": 1
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "rows": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Producto"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/productos/{id}": {
+            "get": {
+                "tags": [
+                    "Productos"
+                ],
+                "summary": "Obtiene producto por ID.",
+                "operationId": "02e54cf544a2dbd8d8bb9925df32b375",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del producto",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "rows": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Producto"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Productos"
+                ],
+                "summary": "Actualiza un  producto.",
+                "operationId": "d9e4a80c4738d90111b188e69741233b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del producto",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "Nombre",
+                                    "Precio",
+                                    "Descripcion",
+                                    "id_categoria",
+                                    "id_marca"
+                                ],
+                                "properties": {
+                                    "Nombre": {
+                                        "type": "string",
+                                        "example": "Televisor"
+                                    },
+                                    "Precio": {
+                                        "type": "integer",
+                                        "example": 15000
+                                    },
+                                    "Descripcion": {
+                                        "type": "string",
+                                        "example": "Televisor de 50 pulgadas LG"
+                                    },
+                                    "id_categoria": {
+                                        "type": "integer",
+                                        "example": 5
+                                    },
+                                    "id_marca": {
+                                        "type": "integer",
+                                        "example": 1
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "rows": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Producto"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Productos"
+                ],
+                "summary": "Borra un producto.",
+                "operationId": "a6375bfba84ef7579fa076d68d7250c5",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del producto",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "rows": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Producto"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Categoria": {
+                "title": "Categoria",
+                "description": "Modelo de tabla Categoria",
+                "properties": {
+                    "id_categoria": {
+                        "type": "integer",
+                        "example": "5"
+                    },
+                    "Nombre": {
+                        "type": "string",
+                        "example": "Marca Gamma alta"
+                    },
+                    "Descripcion": {
+                        "type": "string",
+                        "example": "La marca mascara de todas."
+                    }
+                },
+                "type": "object"
+            },
+            "Cliente": {
+                "title": "Cliente",
+                "description": "Modelo de tabla Cliente",
+                "properties": {
+                    "id_cliente": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "nombre": {
+                        "type": "string",
+                        "example": "Juan Pérez"
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email",
+                        "example": "juan@example.com"
+                    },
+                    "telefono": {
+                        "type": "string",
+                        "example": "123456789"
+                    }
+                },
+                "type": "object"
+            },
+            "EstadoPedido": {
+                "title": "EstadoPedido",
+                "description": "Modelo de Estado de Pedido",
+                "properties": {
+                    "id_estado_pedido": {
+                        "description": "ID del estado del pedido",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "nombre": {
+                        "description": "Nombre del estado del pedido",
+                        "type": "string",
+                        "example": "En proceso"
+                    },
+                    "descripcion": {
+                        "description": "Descripción del estado del pedido",
+                        "type": "string",
+                        "example": "El pedido se encuentra en proceso de preparación"
+                    }
+                },
+                "type": "object"
+            },
+            "FormaPago": {
+                "title": "FormaPago",
+                "description": "Modelo de Forma de Pago",
+                "properties": {
+                    "id_forma_pago": {
+                        "description": "ID de la forma de pago",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "nombre": {
+                        "description": "Nombre de la forma de pago",
+                        "type": "string",
+                        "example": "Tarjeta de crédito"
+                    },
+                    "descripcion": {
+                        "description": "Descripción de la forma de pago",
+                        "type": "string",
+                        "example": "Pago mediante tarjeta de crédito"
+                    }
+                },
+                "type": "object"
+            },
+            "Marca": {
+                "title": "Marcar",
+                "description": "Modelo de tabla Marca",
+                "properties": {
+                    "id_marca": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "nombre": {
+                        "type": "string",
+                        "example": "Marca Alpha"
+                    },
+                    "descripcion": {
+                        "type": "string",
+                        "example": "Una marca líder en innovación y calidad"
+                    }
+                },
+                "type": "object"
+            },
+            "MedioPago": {
+                "title": "MedioPago",
+                "description": "Modelo de Medio de Pago",
+                "properties": {
+                    "id_medio_pago": {
+                        "description": "ID del medio de pago",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "nombre": {
+                        "description": "Nombre del medio de pago",
+                        "type": "string",
+                        "example": "Efectivo"
+                    },
+                    "descripcion": {
+                        "description": "Descripción del medio de pago",
+                        "type": "string",
+                        "example": "Pago en efectivo al momento de la entrega"
+                    }
+                },
+                "type": "object"
+            },
+            "Pedidos": {
+                "title": "Pedidos",
+                "description": "Modelo de datos para Pedidos.",
+                "properties": {
+                    "id_pedido": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "fecha_creacion": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2023-02-23T00:09:16.000000Z"
+                    },
+                    "id_proveedor": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "id_forma_pago": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "id_cliente": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "id_estado_pedido": {
+                        "type": "integer",
+                        "example": "1"
+                    }
+                },
+                "type": "object"
+            },
+            "Producto": {
+                "title": "Producto",
+                "description": "Modelo de Producto",
+                "properties": {
+                    "id_producto": {
+                        "description": "ID del producto",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "nombre": {
+                        "description": "Nombre del producto",
+                        "type": "string",
+                        "example": "Camiseta"
+                    },
+                    "descripcion": {
+                        "description": "Descripción del producto",
+                        "type": "string",
+                        "example": "Camiseta de algodón de manga corta"
+                    },
+                    "precio": {
+                        "description": "Precio del producto",
+                        "type": "number",
+                        "format": "float",
+                        "example": "29.99"
+                    },
+                    "id_categoria": {
+                        "description": "ID de la categoría del producto",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "id_marca": {
+                        "description": "ID de la marca del producto",
+                        "type": "integer",
+                        "example": "1"
+                    }
+                },
+                "type": "object"
+            },
+            "Proveedor": {
+                "title": "Proveedor",
+                "description": "Modelo de Proveedor",
+                "properties": {
+                    "id_proveedor": {
+                        "description": "ID del proveedor",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "nombre": {
+                        "description": "Nombre del proveedor",
+                        "type": "string",
+                        "example": "Proveedor A"
+                    },
+                    "direccion": {
+                        "description": "Dirección del proveedor",
+                        "type": "string",
+                        "example": "Calle 123, Ciudad, País"
+                    },
+                    "telefono": {
+                        "description": "Teléfono del proveedor",
+                        "type": "string",
+                        "example": "+1234567890"
+                    },
+                    "email": {
+                        "description": "Correo electrónico del proveedor",
+                        "type": "string",
+                        "format": "email",
+                        "example": "proveedor@example.com"
+                    }
+                },
+                "type": "object"
+            },
+            "ProductoPedido": {
+                "title": "ProductoPedido",
+                "description": "Modelo de Producto-Pedido",
+                "properties": {
+                    "id_producto_pedido": {
+                        "description": "ID del producto-pedido",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "id_pedido": {
+                        "description": "ID del pedido asociado al producto",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "id_producto": {
+                        "description": "ID del producto asociado al pedido",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "cantidad": {
+                        "description": "Cantidad del producto en el pedido",
+                        "type": "integer",
+                        "example": "2"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    }
+}
